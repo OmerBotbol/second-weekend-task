@@ -27,3 +27,13 @@ th{
     background-color: rgb(226, 78, 108);
     color: black;
 }
+.low-per{
+    background-color: lightblue;
+    color: black;
+}
+.mid-per{
+    background-color: blue;
+}
+.high-per{
+    background-color: darkblue;
+}

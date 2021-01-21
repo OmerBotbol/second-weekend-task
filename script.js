@@ -17,12 +17,12 @@ function timeScale(num){
 }
 function percentScale(num){
     if (num <= 50){
-        document.write(`<td class="low-per">${num}</td>`);
+        document.write(`<td class="low-per">${num}%</td>`);
     } else if (num > 50 && num <= 75){
-        document.write(`<td class="mid-per">${num}</td>`);
+        document.write(`<td class="mid-per">${num}%</td>`);
     }
     else{
-        document.write(`<td class="high-per">${num}</td>`);
+        document.write(`<td class="high-per">${num}%</td>`);
     }
 }
 
