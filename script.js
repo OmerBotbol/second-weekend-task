@@ -3,7 +3,7 @@ function calculateTime(object) {
     return ((timeDistance / 1000) / 60 / 60);
 }
 function calculateTaskFinished(object) {
-    return Math.floor((object.tasksFinished / object.tasksGiven) * 100)
+    return Math.floor((object.tasksFinished / object.tasksGiven) * 100);
 }
 
 let missions = [
@@ -79,6 +79,26 @@ let missions = [
     }
 ]
 for (const mission of missions) {
-    mission.totalTime = calculateTime(mission)
-    mission.tasksFinishedPercent = calculateTaskFinished(mission) 
+    mission.totalTime = calculateTime(mission);
+    mission.tasksFinishedPercent = calculateTaskFinished(mission);
 }
+document.write("<table>");
+document.write("<tr>");
+for (const key in missions[0]) {
+    if (Object.hasOwnProperty.call(missions[0], key)) {
+        document.write("<th>" + key + "</th>");
+    }
+}
+document.write("</tr>");
+for (const mission of missions) {
+    document.write("<tr>");
+    for (const key in mission) {
+        let element = mission[key];
+        if(key === "startedAt" || key === "finishedAt"){
+            element = mission[key].toLocaleTimeString()
+        }
+        document.write("<td>" + element + "</td>");
+    }
+    document.write("</tr>");
+}
+document.write("</table>");
