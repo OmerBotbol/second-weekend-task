@@ -1,3 +1,15 @@
+function calculateTime(object) {
+    const timeDistance = object.finishedAt - object.startedAt;
+    let duration = ((timeDistance / 1000) / 60);
+    if(duration % 60 === 0){
+        return duration / 60;
+    }
+    else{
+        let hours = Math.floor(duration / 60);
+        let minutes = duration - (hours * 60);
+        return Number(hours + "." + minutes)
+    }
+}
 let missions = [
     {
         startedAt: new Date("2021-01-20:13:00"),
