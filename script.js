@@ -1,15 +1,19 @@
 function calculateTime(object) {
     const timeDistance = object.finishedAt - object.startedAt;
-    let duration = ((timeDistance / 1000) / 60);
+    const duration = ((timeDistance / 1000) / 60);
     if(duration % 60 === 0){
         return duration / 60;
     }
     else{
-        let hours = Math.floor(duration / 60);
-        let minutes = duration - (hours * 60);
-        return Number(hours + "." + minutes)
+        const hours = Math.floor(duration / 60);
+        const minutes = duration - (hours * 60);
+        return Number(hours + "." + minutes);
     }
 }
+function calculateTaskFinished(object) {
+    return Math.floor((object.tasksFinished / object.tasksGiven) * 100)
+}
+
 let missions = [
     {
         startedAt: new Date("2021-01-20:13:00"),
@@ -82,3 +86,5 @@ let missions = [
         topic: "JavaScript - Objects"
     }
 ]
+
+console.log(calculateTaskFinished(missions[5]));
