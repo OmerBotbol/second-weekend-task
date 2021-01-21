@@ -15,3 +15,15 @@ th{
     background-color: white;
     color: black;
 }
+.low{
+    background-color: lightgreen;
+    color: black;
+}
+.mid{
+    background-color: rgb(255, 199, 95);
+    color: black;
+}
+.high{
+    background-color: rgb(226, 78, 108);
+    color: black;
+}
