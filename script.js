@@ -5,6 +5,18 @@ function calculateTime(object) {
 function calculateTaskFinished(object) {
     return Math.floor((object.tasksFinished / object.tasksGiven) * 100);
 }
+function textCorrector(headerName){
+    let fixedName = "";
+    for (let i = 0; i < headerName.length; i++) {
+        const char = headerName[i];
+        if(headerName[i] === headerName[i].toUpperCase()){
+            fixedName += " " + char;
+            i++;
+        }
+        fixedName += headerName[i]
+    }
+    return fixedName;
+}
 function timeScale(num){
     if (num <= 4){
         document.write(`<td class="low">${num}</td>`);
@@ -106,7 +118,7 @@ document.write("<table>");
 document.write("<tr>");
 for (const key in missions[0]) {
     if (Object.hasOwnProperty.call(missions[0], key)) {
-        document.write(`<th>${key}</th>`);
+        document.write(`<th>${textCorrector(key)}</th>`);
     }
 }
 document.write("</tr>");
