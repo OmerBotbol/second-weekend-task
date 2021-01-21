@@ -118,7 +118,11 @@ document.write("<table>");
 document.write("<tr>");
 for (const key in missions[0]) {
     if (Object.hasOwnProperty.call(missions[0], key)) {
-        document.write(`<th>${textCorrector(key)}</th>`);
+        let keyName = key;
+        if(keyName === "tasksFinishedPercent"){
+            keyName = "tasksFinished %";
+        }
+        document.write(`<th>${textCorrector(keyName)}</th>`);
     }
 }
 document.write("</tr>");
