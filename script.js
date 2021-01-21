@@ -5,6 +5,26 @@ function calculateTime(object) {
 function calculateTaskFinished(object) {
     return Math.floor((object.tasksFinished / object.tasksGiven) * 100);
 }
+function timeScale(num){
+    if (num <= 4){
+        document.write(`<td class="low">${num}</td>`);
+    } else if (num > 4 && num <= 8){
+        document.write(`<td class="mid">${num}</td>`);
+    }
+    else{
+        document.write(`<td class="high">${num}</td>`);
+    }
+}
+function percentScale(num){
+    if (num <= 50){
+        document.write(`<td class="low-per">${num}</td>`);
+    } else if (num > 50 && num <= 75){
+        document.write(`<td class="mid-per">${num}</td>`);
+    }
+    else{
+        document.write(`<td class="high-per">${num}</td>`);
+    }
+}
 
 let missions = [
     {
@@ -58,7 +78,7 @@ let missions = [
     },
     {
         startedAt: new Date("2021-01-20:12:00"),
-        finishedAt: new Date("2021-01-20:19:30"),
+        finishedAt: new Date("2021-01-20:14:30"),
         tasksGiven: 17,
         tasksFinished: 3,
         topic: "JavaScript - Arrays"
@@ -86,7 +106,7 @@ document.write("<table>");
 document.write("<tr>");
 for (const key in missions[0]) {
     if (Object.hasOwnProperty.call(missions[0], key)) {
-        document.write("<th>" + key + "</th>");
+        document.write(`<th>${key}</th>`);
     }
 }
 document.write("</tr>");
@@ -96,8 +116,14 @@ for (const mission of missions) {
         let element = mission[key];
         if(key === "startedAt" || key === "finishedAt"){
             element = mission[key].toLocaleTimeString()
+            document.write(`<td>${element}</td>`);
+        } else if(key === "totalTime"){
+            timeScale(mission[key]);
+        } else if(key === "tasksFinishedPercent"){
+            percentScale(mission[key]);
+        } else{
+        document.write(`<td>${element}</td>`);
         }
-        document.write("<td>" + element + "</td>");
     }
     document.write("</tr>");
 }
