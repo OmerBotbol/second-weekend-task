@@ -1,0 +1,17 @@
+table{
+    width: 100%;
+    background-color: gray;
+    line-height: 1.5em;
+}
+td, th{
+    background-color: black;
+    border:white 1px solid;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: capitalize;
+    color: white;
+}
+th{
+    background-color: white;
+    color: black;
+}
