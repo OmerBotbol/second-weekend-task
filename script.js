@@ -19,22 +19,22 @@ function textCorrector(headerName){
 }
 function timeScale(num){
     if (num <= 4){
-        document.write(`<td class="low">${num}</td>`);
+        return "low"
     } else if (num > 4 && num <= 8){
-        document.write(`<td class="mid">${num}</td>`);
+        return "mid"
     }
     else{
-        document.write(`<td class="high">${num}</td>`);
+        return "high"
     }
 }
 function percentScale(num){
     if (num <= 50){
-        document.write(`<td class="low-per">${num}%</td>`);
+        return "low-per"
     } else if (num > 50 && num <= 75){
-        document.write(`<td class="mid-per">${num}%</td>`);
+        return "mid-per"
     }
     else{
-        document.write(`<td class="high-per">${num}%</td>`);
+        return "high-per"
     }
 }
 
@@ -114,33 +114,43 @@ for (const mission of missions) {
     mission.totalTime = calculateTime(mission);
     mission.tasksFinishedPercent = calculateTaskFinished(mission);
 }
-document.write("<table>");
-document.write("<tr>");
+
+const table = document.createElement("table")
+const tableContainer = document.createElement("tr")
+const tbody = document.createElement("tbody")
 for (const key in missions[0]) {
     if (Object.hasOwnProperty.call(missions[0], key)) {
         let keyName = key;
         if(keyName === "tasksFinishedPercent"){
             keyName = "tasksFinished %";
         }
-        document.write(`<th>${textCorrector(keyName)}</th>`);
+        let tableHeader = document.createElement("th");
+        tableHeader.textContent = textCorrector(keyName);
+        tableContainer.append(tableHeader);
     }
 }
-document.write("</tr>");
+tbody.append(tableContainer);
+table.append(tbody);
+document.body.append(table);
+
 for (const mission of missions) {
-    document.write("<tr>");
+    let tableContainer2 = document.createElement("tr");
     for (const key in mission) {
+        let tableContent = document.createElement("td");
         let element = mission[key];
         if(key === "startedAt" || key === "finishedAt"){
             element = mission[key].toLocaleTimeString()
-            document.write(`<td>${element}</td>`);
+            tableContent.textContent = element;
         } else if(key === "totalTime"){
-            timeScale(mission[key]);
+            tableContent.textContent = element;
+            tableContent.className = timeScale(mission[key]);
         } else if(key === "tasksFinishedPercent"){
-            percentScale(mission[key]);
-        } else{
-        document.write(`<td>${element}</td>`);
+            tableContent.textContent = element + "%";
+            tableContent.className = percentScale(mission[key]);
+        } else {
+            tableContent.textContent = element;
         }
+        tableContainer2.append(tableContent);
     }
-    document.write("</tr>");
+    tbody.append(tableContainer2);
 }
-document.write("</table>");
